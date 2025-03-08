@@ -33,12 +33,10 @@ data "vsphere_virtual_machine" "template" {
 variable "ips" {
   type = list(string)
   default = [
-    # "10.21.22.65",
-    # "10.21.22.66",
-    # "10.21.22.67",
-    # "10.21.22.68",
-    # "10.21.22.69",
-  ]
+    10.21.22.200
+    10.21.22.201
+    10.21.22.202
+    ]
 }
 
 variable "k8s_version_short" {

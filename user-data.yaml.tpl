@@ -112,12 +112,6 @@ write_files:
       10.21.22.78 ubuntu-78
       10.21.22.79 ubuntu-79
     append: true
-    
-
-
-
-
-
 
 # 用户
 user:
