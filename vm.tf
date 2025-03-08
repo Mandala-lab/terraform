@@ -33,9 +33,9 @@ data "vsphere_virtual_machine" "template" {
 variable "ips" {
   type = list(string)
   default = [
-    10.21.22.200
-    10.21.22.201
-    10.21.22.202
+    "10.21.22.200",
+    "10.21.22.201",
+    "10.21.22.202",
     ]
 }
 
