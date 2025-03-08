@@ -42,13 +42,13 @@ variable "ips" {
 variable "k8s_version_short" {
   description = "Kubernetes version short form (e.g., v1.31)"
   type        = string
-  default     = "v1.31"
+  default     = "v1.32"
 }
 
 variable "k8s_version_full" {
   description = "Kubernetes version full form with build info (e.g., 1.30.2-1.1)"
   type        = string
-  default     = "v1.31.4"
+  default     = "v1.32.2"
 }
 
 locals {
@@ -89,7 +89,7 @@ resource "vsphere_virtual_machine" "vm" {
   extra_config = {
     "guestinfo.userdata" = base64encode(templatefile("user-data.yaml.tpl", {
       "hostname"          = each.value.hostname
-      "nerdctl"           = false
+      "nerdctl"           = true
       "docker_dind"       = false
       "docker_ce"         = false
       "docker_ubuntu"     = false
