@@ -42,15 +42,15 @@ variable "ips" {
 }
 
 variable "k8s_version_short" {
-  description = "Kubernetes version short form (e.g., v1.30)"
+  description = "Kubernetes version short form (e.g., v1.31)"
   type        = string
-  default     = "v1.30"
+  default     = "v1.31"
 }
 
 variable "k8s_version_full" {
   description = "Kubernetes version full form with build info (e.g., 1.30.2-1.1)"
   type        = string
-  default     = "1.30.2-1.1"
+  default     = "v1.31.4"
 }
 
 locals {
@@ -68,8 +68,8 @@ resource "vsphere_virtual_machine" "vm" {
   name              = "${each.value.hostname}"
   resource_pool_id  = data.vsphere_host.esxi_host.resource_pool_id
   datastore_id      = data.vsphere_datastore.datastore.id
-  num_cpus          = 4
-  memory            = 4096
+  num_cpus          = 8
+  memory            = 8192
   guest_id          = data.vsphere_virtual_machine.template.guest_id
   scsi_type         = data.vsphere_virtual_machine.template.scsi_type
   nested_hv_enabled = true
@@ -95,8 +95,8 @@ resource "vsphere_virtual_machine" "vm" {
       "docker_dind"       = false
       "docker_ce"         = false
       "docker_ubuntu"     = false
-      "k8s_tools"         = false
-      "helm"              = false
+      "k8s_tools"         = true
+      "helm"              = true
       "k9s"               = false
       "neofetch"          = false
       "k3s"               = false

@@ -28,8 +28,7 @@ hostname: ${hostname}
 
 # ssh 公钥
 ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5E3GWFRw0aQrLNDIZ3E6b5VmvzXgFI5DOhnxCDtLqqYDhJ8WQIVnPvXqDJu0ZIhSLudMX5Fng/WPO5ES7OnmZOLqla5Tq26leV4MrvIWgHlZfJuBJNc2smFLf68yxZYm0QFjqsxOK3tg0Mc2Hb+93maOCDGUY/+IkiXtgCrHNUqvA3NlaMYmNUARDoUX/eAiGCn/M7nrEN7XAM885/GXAkdyMQxIiLJpj6HrTSXalTj8G6sPap/5IHb0+Jbx+NW8W69UDkOYDEy17yyJzb6jv3TU3Qm1mCHO4R4LMA/LxQOxsSxqXQMzyNRZyHPO2UI6zPlWojlcucsLHrpZ0RhsK8UmDeyRW9zN1J9TRngLykvC6TnkBPtKdQ5jx1kgN6KG4UUCPgqjncc1f7kF30V4kX+dXUDWggM1wd8ICH1BRgbTIvZdbl/X9OnVRbqSzMF6soTdNIEbTZMvPSfFrTEmt0G44ZLqWk8NKXeFSCQKey103KNyD4pKBCTLcpQHg7qE= suyiiyii@PC-5950x
-  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1nwKPU78U9wvPfizWEV9iEZQoZNxSsL+/qmskBce4s
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPwD9z9NqGFDEA+2O01Bg62qtT4KH0GbD/GuVvRAqfmr sumnery@qq.com
 
 # 写入文件
 write_files:
@@ -122,14 +121,12 @@ write_files:
 
 # 用户
 user:
-  name: suyiiyii
+  name: sumery
 
 chpasswd:
   expire: False
   users:
     - name: root
-      password: $6$As3IUoJEdk6ep5xx$mlgkdV4lSIUDqn6SqdghuIYT/dOIg4C038DdqCIRrEFRKvmIpKjN4MGZry0wSQ8RoKcwa6qjkUR6gDhc0I2W/.
-    - name: suyiiyii
       password: $6$As3IUoJEdk6ep5xx$mlgkdV4lSIUDqn6SqdghuIYT/dOIg4C038DdqCIRrEFRKvmIpKjN4MGZry0wSQ8RoKcwa6qjkUR6gDhc0I2W/.
 
 final_message: |
@@ -193,7 +190,7 @@ runcmd:
   #     config_path = "/etc/containerd/certs.d"
   - sed -i '/\[plugins."io.containerd.grpc.v1.cri".registry\]/,/^\[/ s/config_path = ""/config_path = "\/etc\/containerd\/certs.d"/' /etc/containerd/config.toml
   # sandbox_image 版本
-  - sed -i 's#sandbox_image = "registry.k8s.io/pause:3.8"#sandbox_image = "registry.k8s.io/pause:3.9"#g' /etc/containerd/config.toml
+  - sed -i 's#sandbox_image = "registry.k8s.io/pause:3.8"#sandbox_image = "registry.k8s.io/pause:3.10"#g' /etc/containerd/config.toml
   - systemctl restart containerd
 
   # 加速 nerdctl crictl
